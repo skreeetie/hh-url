@@ -1,5 +1,8 @@
 import "@mantine/core/styles.css";
 import { MantineProvider, createTheme, rgba } from "@mantine/core";
+import { Vacancies } from "./pages/Vacancies/Vacancies";
+import { Header } from "./modules/Header";
+import "./App.scss";
 
 const theme = createTheme({
   colors: {
@@ -115,5 +118,10 @@ const theme = createTheme({
 });
 
 export const App = () => {
-  return <MantineProvider theme={theme}></MantineProvider>;
+  return (
+    <MantineProvider theme={theme}>
+      <Header />
+      <Vacancies />
+    </MantineProvider>
+  );
 };
