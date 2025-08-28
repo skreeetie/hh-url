@@ -1,0 +1,27 @@
+.skills {
+  padding: 24px;
+  border-radius: 12px;
+  background-color: #fff;
+  width: 317px;
+
+  .title {
+    margin: 0;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 143%;
+    color: #212529;
+    margin-bottom: 12px;
+  }
+  .search {
+    width: 227px;
+    height: 30px;
+  }
+  .input {
+    font-family: "Open Sans", sans-serif;
+    border-color: rgba(15, 15, 16, 0.2);
+    --input-placeholder-color: rgba(15, 15, 16, 0.3);
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 233%;
+  }
+}
