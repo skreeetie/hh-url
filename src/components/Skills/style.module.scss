@@ -12,16 +12,42 @@
     color: #212529;
     margin-bottom: 12px;
   }
-  .search {
-    width: 227px;
-    height: 30px;
+  .action {
+    display: flex;
+    gap: 8px;
+
+    .search {
+      width: 227px;
+      height: 30px;
+    }
+    .input {
+      font-family: "Open Sans", sans-serif;
+      border-color: rgba(15, 15, 16, 0.2);
+      --input-placeholder-color: rgba(15, 15, 16, 0.3);
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 233%;
+    }
+    .add {
+      width: 34px;
+      height: 30px;
+      opacity: 0.5;
+
+      &:hover {
+        opacity: 0.6;
+      }
+    }
   }
-  .input {
-    font-family: "Open Sans", sans-serif;
-    border-color: rgba(15, 15, 16, 0.2);
-    --input-placeholder-color: rgba(15, 15, 16, 0.3);
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 233%;
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 12px;
+
+    .tag {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
   }
 }
