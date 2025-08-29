@@ -2,6 +2,7 @@ import { Button, TextInput } from "@mantine/core";
 import Search from "../../assets/search.svg?react";
 import style from "./style.module.scss";
 import { Skills } from "../../components/Skills/Skills";
+import { Area } from "../../components/Area/Area";
 
 export const VacanciesList = () => {
   return (
@@ -31,6 +32,7 @@ export const VacanciesList = () => {
       </div>
       <div>
         <Skills />
+        <Area />
       </div>
     </section>
   );

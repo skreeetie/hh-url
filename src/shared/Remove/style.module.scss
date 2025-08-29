@@ -1,3 +1,18 @@
+@keyframes clickAnimation {
+  0% {
+    transform: translateY(0);
+  }
+  10% {
+    transform: translateY(1px);
+  }
+  90% {
+    transform: translateY(1px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
 .button {
   width: 16px;
   height: 16px;
@@ -8,4 +23,8 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+
+  &:active {
+    animation: clickAnimation 0.3s linear;
+  }
 }
