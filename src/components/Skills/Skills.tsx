@@ -25,7 +25,7 @@ export const Skills = () => {
       <div className={style.action}>
         <TextInput
           onKeyDown={({ key }) => {
-            if (key === "Enter") {
+            if (key === "Enter" && value) {
               dispatch(
                 addToSkills({
                   id: uuidv4(),
@@ -48,12 +48,14 @@ export const Skills = () => {
           aria-label="Add"
           classNames={{ root: style.add }}
           onClick={() => {
-            dispatch(
-              addToSkills({
-                id: uuidv4(),
-                name: value,
-              })
-            );
+            if (value) {
+              dispatch(
+                addToSkills({
+                  id: uuidv4(),
+                  name: value,
+                })
+              );
+            }
             setValue("");
           }}
         >
