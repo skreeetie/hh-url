@@ -1,0 +1,92 @@
+.vacancy {
+  border-radius: 12px;
+  padding: 24px;
+  background-color: #fff;
+  width: 659px;
+
+  p {
+    margin: 0;
+  }
+  h3 {
+    margin: 0;
+  }
+  .title {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 120%;
+    color: #364fc7;
+  }
+  .requirements {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 8px;
+
+    .salary {
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 150%;
+      color: #0f0f10;
+    }
+    .exp {
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 171%;
+      color: rgba(15, 15, 16, 0.5);
+    }
+  }
+  .employer {
+    margin-top: 16px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 171%;
+    color: rgba(15, 15, 16, 0.5);
+  }
+  .work {
+    margin-top: 8px;
+    text-transform: uppercase;
+    border-radius: 2px;
+    padding: 1px 6px;
+    font-weight: 700;
+    font-size: 9px;
+    line-height: 156%;
+    height: 16px;
+
+    &--remote {
+      background-color: #4263eb;
+      color: #fff;
+      width: 105px;
+    }
+  }
+  .address {
+    margin-top: 4px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: #0f0f10;
+  }
+  .buttons {
+    margin-top: 16px;
+    display: flex;
+    gap: 12px;
+
+    .see-more {
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 243%;
+      color: #fff;
+    }
+    .respond {
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 243%;
+      color: #0f0f10;
+    }
+    .wrapper-more {
+      --button-hover: rgba(15, 15, 16, 0.8) !important;
+    }
+    .wrapper-respond {
+      --button-hover: rgba(15, 15, 16, 0.2) !important;
+    }
+  }
+}

@@ -3,6 +3,7 @@ import Search from "../../assets/search.svg?react";
 import style from "./style.module.scss";
 import { Skills } from "../../components/Skills/Skills";
 import { Area } from "../../components/Area/Area";
+import { Vacancy } from "../../components/Vacancy/Vacancy";
 
 export const VacanciesList = () => {
   return (
@@ -30,9 +31,15 @@ export const VacanciesList = () => {
           </Button>
         </div>
       </div>
-      <div>
-        <Skills />
-        <Area />
+      <div className={style.wrapper}>
+        <div>
+          <Skills />
+          <Area />
+        </div>
+        <div className={style.list}>
+          <Vacancy />
+          <Vacancy />
+        </div>
       </div>
     </section>
   );

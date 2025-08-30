@@ -14,7 +14,7 @@ export const Area = () => {
         checkIconPosition="right"
         leftSectionPointerEvents="none"
         leftSection={<Map width={15} height={15} />}
-        placeholder="Все города"
+        placeholder={areasList.length > 0 ? "" : "Все города"}
         data={["Все города", "Москва", "Санкт-Петербург"]}
         value={areasList}
         onChange={(e) => {

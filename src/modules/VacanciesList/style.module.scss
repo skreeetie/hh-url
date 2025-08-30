@@ -7,6 +7,7 @@
     align-items: center;
     justify-content: space-between;
     margin-bottom: 48px;
+    max-width: 1160px;
 
     .title {
       margin: 0;
@@ -48,6 +49,18 @@
         line-height: 250%;
         color: #fff;
       }
+    }
+  }
+  .wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    max-width: 1160px;
+
+    .list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
     }
   }
 }
