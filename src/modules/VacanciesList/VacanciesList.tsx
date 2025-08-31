@@ -56,6 +56,8 @@ export const VacanciesList = () => {
                 alternate={item.alternate_url}
                 employer={item.employer.name}
                 salary={item.salary}
+                place={item.area.name}
+                work_format={item.work_format}
               />
             );
           })}

@@ -57,6 +57,21 @@
       color: #fff;
       width: 105px;
     }
+    &--office {
+      background-color: rgba(15, 15, 16, 0.1);
+      color: rgba(15, 15, 16, 0.5);
+      width: 41px;
+    }
+    &--hybrid {
+      background-color: #0f0f10;
+      color: #fff;
+      width: 50px;
+    }
+    &--field {
+      background-color: rgba(15, 15, 16, 0.1);
+      color: rgba(15, 15, 16, 0.5);
+      width: 74px;
+    }
   }
   .address {
     margin-top: 4px;

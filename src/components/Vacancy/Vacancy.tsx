@@ -9,6 +9,10 @@ interface VacancyProps {
   alternate: string;
   employer: string;
   salary: Salary;
+  place: string;
+  work_format: {
+    id: string;
+  }[];
 }
 
 export const Vacancy = ({
@@ -17,6 +21,8 @@ export const Vacancy = ({
   alternate,
   employer,
   salary,
+  place,
+  work_format,
 }: VacancyProps) => {
   const typeExp = (exp: string) => {
     switch (exp) {
@@ -84,9 +90,60 @@ export const Vacancy = ({
             return `До ${salary.to} ₽`;
           }
           return `От ${salary.from} ₽`;
+        case "UAH":
+          if (salary.to !== null && salary.from !== null) {
+            return `${salary.from} - ${salary.to} ₴`;
+          } else if (salary.to !== null && salary.from === null) {
+            return `До ${salary.to} ₴`;
+          }
+          return `От ${salary.from} ₴`;
+        case "USD":
+          if (salary.to !== null && salary.from !== null) {
+            return `${salary.from} - ${salary.to} $`;
+          } else if (salary.to !== null && salary.from === null) {
+            return `До ${salary.to} $`;
+          }
+          return `От ${salary.from} $`;
+        case "UZS":
+          if (salary.to !== null && salary.from !== null) {
+            return `${salary.from} - ${salary.to} Soʻm`;
+          } else if (salary.to !== null && salary.from === null) {
+            return `До ${salary.to} Soʻm`;
+          }
+          return `До ${salary.from} Soʻm`;
+        default:
+          break;
       }
     } else {
       return "Не указано";
+    }
+  };
+  const getWorkFormat = (format: string) => {
+    switch (format) {
+      case "ON_SITE":
+        return "Офис";
+      case "REMOTE":
+        return "Можно удаленно";
+      case "HYBRID":
+        return "Гибрид";
+      case "FIELD_WORK":
+        return "Разъездная";
+      default:
+        break;
+    }
+  };
+  const getWorkSelector = (format: string) => {
+    switch (format) {
+      case "ON_SITE":
+        return "work--office";
+      case "REMOTE":
+        return "work--remote";
+      case "HYBRID":
+        return "work--hybrid";
+      case "FIELD_WORK":
+        return "work--field";
+      default:
+        break;
     }
   };
   return (
@@ -97,10 +154,17 @@ export const Vacancy = ({
         <p className={style.exp}>{typeExp(exp_id)}</p>
       </div>
       <p className={style.employer}>{employer}</p>
-      <p className={classNames(style.work, style["work--remote"])}>
-        Можно удаленно
+      <p
+        className={classNames(
+          style.work,
+          work_format.length >= 1
+            ? style[`${getWorkSelector(work_format[0].id)}`]
+            : style["work--office"]
+        )}
+      >
+        {work_format.length >= 1 ? getWorkFormat(work_format[0].id) : "Офис"}
       </p>
-      <p className={style.address}>Набережные Челны</p>
+      <p className={style.address}>{place}</p>
       <div className={style.buttons}>
         <Button
           color="black.9"
