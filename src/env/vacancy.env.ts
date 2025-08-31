@@ -1,3 +1,5 @@
+import type { Salary } from "./salary.env";
+
 export type Vacancy = {
   alternate_url: string;
   area: {
@@ -11,11 +13,7 @@ export type Vacancy = {
     id: string;
   };
   name: string;
-  salary: {
-    currency: string;
-    from: string;
-    to: string | null;
-  } | null;
+  salary: Salary;
   work_format: {
     id: string;
   }[];

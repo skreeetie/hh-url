@@ -48,7 +48,16 @@ export const VacanciesList = () => {
         </div>
         <div className={style.list}>
           {vacanciesList.map((item) => {
-            return <Vacancy key={item.id} name={item.name} exp_id={item.experience.id} />;
+            return (
+              <Vacancy
+                key={item.id}
+                name={item.name}
+                exp_id={item.experience.id}
+                alternate={item.alternate_url}
+                employer={item.employer.name}
+                salary={item.salary}
+              />
+            );
           })}
         </div>
       </div>
