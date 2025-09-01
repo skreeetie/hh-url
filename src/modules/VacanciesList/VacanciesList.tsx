@@ -7,15 +7,21 @@ import { Vacancy } from "../../components/Vacancy/Vacancy";
 import { useTypedDispatch, useTypedSelector } from "../../hooks/redux";
 import { useEffect } from "react";
 import { fetchVacancies } from "../../reducers/VacanciesSlice/VacanciesThunk";
+import { PaginationFooter } from "../../components/PaginationFooter/PaginationFooter";
 
 export const VacanciesList = () => {
   const dispatch = useTypedDispatch();
   const vacanciesList = useTypedSelector(
     (state) => state.vacancies.vacanciesList
   );
+  const activePage = useTypedSelector((state) => state.page.activePage);
   useEffect(() => {
-    dispatch(fetchVacancies());
-  }, [dispatch]);
+    dispatch(
+      fetchVacancies(
+        `https://api.hh.ru/vacancies?industry=7&professional_role=96&per_page=10&page=${activePage}`
+      )
+    );
+  }, [dispatch, activePage]);
   return (
     <section className={style.section}>
       <div className={style.top}>
@@ -63,6 +69,7 @@ export const VacanciesList = () => {
           })}
         </div>
       </div>
+      <PaginationFooter />
     </section>
   );
 };
