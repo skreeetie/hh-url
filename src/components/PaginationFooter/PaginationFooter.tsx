@@ -1,6 +1,7 @@
 import { Pagination } from "@mantine/core";
 import { useTypedDispatch, useTypedSelector } from "../../hooks/redux";
 import { setActivePage } from "../../reducers/PageSlice/PageSlice";
+import style from "./style.module.scss";
 
 export const PaginationFooter = () => {
   const vacanciesList = useTypedSelector(
@@ -9,7 +10,7 @@ export const PaginationFooter = () => {
   const dispatch = useTypedDispatch();
   const activePage = useTypedSelector((state) => state.page.activePage);
   return (
-    <footer>
+    <footer className={style.footer}>
       <Pagination
         value={activePage}
         onChange={(value) => {
@@ -18,6 +19,8 @@ export const PaginationFooter = () => {
         total={vacanciesList.length}
         radius="xs"
         withEdges
+        color="pre-light.9"
+        classNames={{ control: style.items, root: style.active }}
       />
     </footer>
   );

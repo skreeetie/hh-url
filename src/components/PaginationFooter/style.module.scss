@@ -1,0 +1,13 @@
+.footer {
+  align-self: center;
+  margin-top: 8px;
+  margin-bottom: 84px;
+
+  .items {
+    background: none;
+    border: 1px solid rgba(15, 15, 16, 0.2);
+  }
+  .active {
+    --pagination-active-color: rgba(15, 15, 16, 0.3);
+  }
+}

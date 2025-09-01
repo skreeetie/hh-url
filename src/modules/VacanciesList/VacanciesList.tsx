@@ -5,7 +5,7 @@ import { Skills } from "../../components/Skills/Skills";
 import { Area } from "../../components/Area/Area";
 import { Vacancy } from "../../components/Vacancy/Vacancy";
 import { useTypedDispatch, useTypedSelector } from "../../hooks/redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { fetchVacancies } from "../../reducers/VacanciesSlice/VacanciesThunk";
 import { PaginationFooter } from "../../components/PaginationFooter/PaginationFooter";
 
@@ -15,13 +15,15 @@ export const VacanciesList = () => {
     (state) => state.vacancies.vacanciesList
   );
   const activePage = useTypedSelector((state) => state.page.activePage);
+  const [searchText, setSearchText] = useState<string>("");
+  const [searchValue, setSearchValue] = useState<string>("");
   useEffect(() => {
     dispatch(
       fetchVacancies(
-        `https://api.hh.ru/vacancies?industry=7&professional_role=96&per_page=10&page=${activePage}`
+        `https://api.hh.ru/vacancies?industry=7&professional_role=96&per_page=10&page=${activePage}&text=${searchText}`
       )
     );
-  }, [dispatch, activePage]);
+  }, [dispatch, activePage, searchText]);
   return (
     <section className={style.section}>
       <div className={style.top}>
@@ -31,22 +33,30 @@ export const VacanciesList = () => {
         </div>
         <div className={style.inputs}>
           <TextInput
+            value={searchValue}
             size="md"
             radius="md"
             placeholder="Должность или название компании"
             leftSection={<Search width={14} height={14} />}
             classNames={{ input: style.input, wrapper: style.search }}
+            onChange={({ target: { value } }) => {
+              setSearchValue(value);
+            }}
           />
           <Button
             classNames={{ label: style.label }}
             size="md"
             variant="filled"
             color="primary.4"
+            onClick={() => {
+              setSearchText(searchValue);
+            }}
           >
             Найти
           </Button>
         </div>
       </div>
+      <div className={style.divider}></div>
       <div className={style.wrapper}>
         <div>
           <Skills />
@@ -67,9 +77,9 @@ export const VacanciesList = () => {
               />
             );
           })}
+          <PaginationFooter />
         </div>
       </div>
-      <PaginationFooter />
     </section>
   );
 };
