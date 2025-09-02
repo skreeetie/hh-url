@@ -75,6 +75,7 @@ export const Skills = () => {
                   dispatch(
                     removeFromSkills({
                       id: item.id,
+                      name: item.name,
                     })
                   );
                 }}

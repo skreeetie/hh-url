@@ -17,13 +17,15 @@ export const VacanciesList = () => {
   const activePage = useTypedSelector((state) => state.page.activePage);
   const [searchText, setSearchText] = useState<string>("");
   const [searchValue, setSearchValue] = useState<string>("");
+  const areasQuery = useTypedSelector((state) => state.area.areasQuery);
+  const skillsQuery = useTypedSelector((state) => state.skills.skillsQuery);
   useEffect(() => {
     dispatch(
       fetchVacancies(
-        `https://api.hh.ru/vacancies?industry=7&professional_role=96&per_page=10&page=${activePage}&text=${searchText}`
+        `https://api.hh.ru/vacancies?industry=7&professional_role=96&per_page=10&page=${activePage}&text=${searchText}${skillsQuery}${areasQuery}`
       )
     );
-  }, [dispatch, activePage, searchText]);
+  }, [dispatch, activePage, searchText, areasQuery, skillsQuery]);
   return (
     <section className={style.section}>
       <div className={style.top}>
