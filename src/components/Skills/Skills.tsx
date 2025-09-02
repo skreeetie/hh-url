@@ -58,6 +58,7 @@ export const Skills = () => {
             }
             setValue("");
           }}
+          data-testid="add"
         >
           <Add width={18} height={18} />
         </ActionIcon>
@@ -79,6 +80,7 @@ export const Skills = () => {
                     })
                   );
                 }}
+                testid="remove"
               />
             </Pill>
           );
