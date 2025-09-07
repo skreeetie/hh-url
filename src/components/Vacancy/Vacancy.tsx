@@ -13,6 +13,8 @@ interface VacancyProps {
   work_format: {
     id: string;
   }[];
+  id: string;
+  clicked?: boolean;
 }
 
 export const Vacancy = ({
@@ -23,6 +25,8 @@ export const Vacancy = ({
   salary,
   place,
   work_format,
+  id,
+  clicked,
 }: VacancyProps) => {
   const typeExp = (exp: string) => {
     switch (exp) {
@@ -166,25 +170,52 @@ export const Vacancy = ({
       </p>
       <p className={style.address}>{place}</p>
       <div className={style.buttons}>
-        <Button
-          color="black.9"
-          variant="filled"
-          size="md"
-          classNames={{ label: style["see-more"], root: style["wrapper-more"] }}
-        >
-          Смотреть вакансию
-        </Button>
-        <Button
-          size="md"
-          variant="filled"
-          color="ultra-light.9"
-          classNames={{ label: style.respond, root: style["wrapper-respond"] }}
-          onClick={() => {
-            window.open(alternate);
-          }}
-        >
-          Откликнуться
-        </Button>
+        {clicked ? (
+          <Button
+            size="md"
+            variant="filled"
+            color="black.9"
+            classNames={{
+              label: style["see-more"],
+              root: style["wrapper-more"],
+            }}
+            onClick={() => {
+              window.open(alternate);
+            }}
+          >
+            Откликнуться на hh.ru
+          </Button>
+        ) : (
+          <>
+            <Button
+              component="a"
+              color="black.9"
+              variant="filled"
+              size="md"
+              classNames={{
+                label: style["see-more"],
+                root: style["wrapper-more"],
+              }}
+              href={`/hh-url/vacancies/${id}`}
+            >
+              Смотреть вакансию
+            </Button>
+            <Button
+              size="md"
+              variant="filled"
+              color="ultra-light.9"
+              classNames={{
+                label: style.respond,
+                root: style["wrapper-respond"],
+              }}
+              onClick={() => {
+                window.open(alternate);
+              }}
+            >
+              Откликнуться
+            </Button>
+          </>
+        )}
       </div>
     </div>
   );

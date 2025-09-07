@@ -8,6 +8,7 @@ import { useTypedDispatch, useTypedSelector } from "../../hooks/redux";
 import { useEffect, useState } from "react";
 import { fetchVacancies } from "../../reducers/VacanciesSlice/VacanciesThunk";
 import { PaginationFooter } from "../../components/PaginationFooter/PaginationFooter";
+import { useSearchParams } from "react-router";
 
 export const VacanciesList = () => {
   const dispatch = useTypedDispatch();
@@ -18,14 +19,15 @@ export const VacanciesList = () => {
   const [searchText, setSearchText] = useState<string>("");
   const [searchValue, setSearchValue] = useState<string>("");
   const areasQuery = useTypedSelector((state) => state.area.areasQuery);
-  const skillsQuery = useTypedSelector((state) => state.skills.skillsQuery);
+  const [searchParams] = useSearchParams({ skills: "TypeScript React Redux" });
   useEffect(() => {
+    const skillsQuery = ` ${searchParams.get("skills")}`;
     dispatch(
       fetchVacancies(
         `https://api.hh.ru/vacancies?industry=7&professional_role=96&per_page=10&page=${activePage}&text=${searchText}${skillsQuery}${areasQuery}`
       )
     );
-  }, [dispatch, activePage, searchText, areasQuery, skillsQuery]);
+  }, [dispatch, activePage, searchText, areasQuery, searchParams]);
   return (
     <section className={style.section}>
       <div className={style.top}>
@@ -76,6 +78,7 @@ export const VacanciesList = () => {
                 salary={item.salary}
                 place={item.area.name}
                 work_format={item.work_format}
+                id={item.id}
               />
             );
           })}

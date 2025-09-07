@@ -1,0 +1,32 @@
+.info {
+  margin: 0 auto;
+  margin-top: 24px;
+  margin-bottom: 259px;
+  width: 659px;
+  display: flex;
+  gap: 29px;
+  flex-direction: column;
+
+  .description {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 24px;
+    width: 659px;
+
+    h3 {
+      margin: 0;
+    }
+    p {
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 150%;
+      color: #000;
+    }
+    .title {
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 120%;
+      color: #000;
+    }
+  }
+}

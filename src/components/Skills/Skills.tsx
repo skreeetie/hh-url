@@ -2,13 +2,10 @@ import { ActionIcon, Pill, TextInput } from "@mantine/core";
 import Add from "../../assets/add.svg?react";
 import style from "./style.module.scss";
 import { Remove } from "../../shared/Remove/Remove";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTypedDispatch, useTypedSelector } from "../../hooks/redux";
-import { v4 as uuidv4 } from "uuid";
-import {
-  addToSkills,
-  removeFromSkills,
-} from "../../reducers/SkillsSlice/SkillsSlice";
+import { setSkills } from "../../reducers/SkillsSlice/SkillsSlice";
+import { useSearchParams } from "react-router";
 
 export const Skills = () => {
   const [value, setValue] = useState<string>("");
@@ -19,6 +16,13 @@ export const Skills = () => {
   };
   const dispatch = useTypedDispatch();
   const skillsList = useTypedSelector((state) => state.skills.skillsList);
+  const [searchParams, setSearchParams] = useSearchParams({
+    skills: "TypeScript React Redux",
+  });
+  useEffect(() => {
+    const skills = searchParams.get("skills") || "";
+    dispatch(setSkills({ list: skills.split(" ") }));
+  }, [dispatch, searchParams]);
   return (
     <div className={style.skills}>
       <p className={style.title}>Ключевые навыки</p>
@@ -26,12 +30,15 @@ export const Skills = () => {
         <TextInput
           onKeyDown={({ key }) => {
             if (key === "Enter" && value) {
-              dispatch(
-                addToSkills({
-                  id: uuidv4(),
-                  name: value,
-                })
-              );
+              if (searchParams.get("skills")) {
+                setSearchParams({
+                  skills: `${searchParams.get("skills")} ${value}`,
+                });
+              } else {
+                setSearchParams({
+                  skills: `${value}`,
+                });
+              }
               setValue("");
             }
           }}
@@ -49,14 +56,17 @@ export const Skills = () => {
           classNames={{ root: style.add }}
           onClick={() => {
             if (value) {
-              dispatch(
-                addToSkills({
-                  id: uuidv4(),
-                  name: value,
-                })
-              );
+              if (searchParams.get("skills")) {
+                setSearchParams({
+                  skills: `${searchParams.get("skills")} ${value}`,
+                });
+              } else {
+                setSearchParams({
+                  skills: `${value}`,
+                });
+              }
+              setValue("");
             }
-            setValue("");
           }}
           data-testid="add"
         >
@@ -73,12 +83,12 @@ export const Skills = () => {
               {item.name}
               <Remove
                 onClick={() => {
-                  dispatch(
-                    removeFromSkills({
-                      id: item.id,
-                      name: item.name,
-                    })
-                  );
+                  setSearchParams({
+                    skills: skillsList
+                      .filter((skill) => skill.id !== item.id)
+                      .map((skill) => skill.name)
+                      .join(" "),
+                  });
                 }}
                 testid="remove"
               />
