@@ -14,6 +14,7 @@ describe("vacancy card", () => {
         salary={null}
         place="Москва"
         work_format={[]}
+        id="1"
       />
     );
     expect(screen.getAllByText(/Опыт/)[0]).toBeInTheDocument();
