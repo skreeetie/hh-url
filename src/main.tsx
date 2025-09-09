@@ -8,7 +8,7 @@ import { App } from "./App.tsx";
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
+      <BrowserRouter basename="/hh-url">
         <App />
       </BrowserRouter>
     </Provider>

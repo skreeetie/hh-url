@@ -12,8 +12,8 @@ export const App = () => {
     <MantineProvider theme={theme}>
       <Header />
       <Routes>
-        <Route path="/hh-url/vacancies" element={<Vacancies />} />
-        <Route path="/hh-url/vacancies/:id" element={<VacancyPage />} />
+        <Route path="/vacancies" element={<Vacancies />} />
+        <Route path="/vacancies/:id" element={<VacancyPage />} />
       </Routes>
     </MantineProvider>
   );
