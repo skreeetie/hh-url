@@ -3,10 +3,16 @@ import Map from "../../assets/area.svg?react";
 import style from "./style.module.scss";
 import { useTypedDispatch, useTypedSelector } from "../../redux/hooks/redux";
 import { setAreas } from "../../redux/reducers/AreaSlice/AreaSlice";
+import { useEffect } from "react";
+import { useAreas } from "../../hooks/useAreas";
 
 export const Area = () => {
   const dispatch = useTypedDispatch();
   const areasList = useTypedSelector((state) => state.area.areasList);
+  const { setSearchParams, areas } = useAreas();
+  useEffect(() => {
+    dispatch(setAreas({ list: areas }));
+  }, [dispatch, areas]);
   return (
     <div className={style.area}>
       <MultiSelect
@@ -18,11 +24,7 @@ export const Area = () => {
         data={["Все города", "Москва", "Санкт-Петербург"]}
         value={areasList}
         onChange={(e) => {
-          dispatch(
-            setAreas({
-              list: e,
-            })
-          );
+          setSearchParams({ area: e });
         }}
         classNames={{ input: style.input }}
       />

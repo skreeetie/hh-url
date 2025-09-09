@@ -5,7 +5,7 @@ import { Remove } from "../../shared/Remove/Remove";
 import { useEffect, useState } from "react";
 import { useTypedDispatch, useTypedSelector } from "../../redux/hooks/redux";
 import { setSkills } from "../../redux/reducers/SkillsSlice/SkillsSlice";
-import { useSearchParams } from "react-router";
+import { useSkills } from "../../hooks/useSkills";
 
 export const Skills = () => {
   const [value, setValue] = useState<string>("");
@@ -16,13 +16,10 @@ export const Skills = () => {
   };
   const dispatch = useTypedDispatch();
   const skillsList = useTypedSelector((state) => state.skills.skillsList);
-  const [searchParams, setSearchParams] = useSearchParams({
-    skills: "TypeScript React Redux",
-  });
+  const { searchParams, setSearchParams, skills } = useSkills();
   useEffect(() => {
-    const skills = searchParams.get("skills") || "";
-    dispatch(setSkills({ list: skills.split(" ") }));
-  }, [dispatch, searchParams]);
+    dispatch(setSkills({ list: skills }));
+  }, [dispatch, skills]);
   return (
     <div className={style.skills}>
       <p className={style.title}>Ключевые навыки</p>

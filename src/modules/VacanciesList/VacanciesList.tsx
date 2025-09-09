@@ -8,10 +8,14 @@ import { useState } from "react";
 import { PaginationFooter } from "../../components/PaginationFooter/PaginationFooter";
 import { useUrl } from "../../hooks/useUrl";
 import { useGetFilteredVacanciesQuery } from "../../redux/reducers/VacanciesApi/VacanciesApi";
+import { useSearch } from "../../hooks/useSearch";
 
 export const VacanciesList = () => {
-  const { url, setSearchText } = useUrl();
-  const [searchValue, setSearchValue] = useState<string>("");
+  const { url } = useUrl();
+  const { searchParams, setSearchParams } = useSearch();
+  const [searchValue, setSearchValue] = useState<string>(
+    searchParams.get("search") || ""
+  );
   const { data: vacanciesList } = useGetFilteredVacanciesQuery(url);
   return (
     <section className={style.section}>
@@ -22,6 +26,11 @@ export const VacanciesList = () => {
         </div>
         <div className={style.inputs}>
           <TextInput
+            onKeyDown={({ key }) => {
+              if (key === "Enter") {
+                setSearchParams({ search: searchValue });
+              }
+            }}
             value={searchValue}
             size="md"
             radius="md"
@@ -38,7 +47,7 @@ export const VacanciesList = () => {
             variant="filled"
             color="primary.4"
             onClick={() => {
-              setSearchText(searchValue);
+              setSearchParams({ search: searchValue });
             }}
           >
             Найти

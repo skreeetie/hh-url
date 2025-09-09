@@ -15,7 +15,7 @@ const skillsSlice = createSlice({
   initialState,
   reducers: {
     setSkills: (state, action) => {
-      if (action.payload.list[0].length > 0) {
+      if (action.payload.list[0] && action.payload.list[0].length > 0) {
         state.skillsList = action.payload.list.map((item: string) => {
           return {
             id: uuidv4(),
