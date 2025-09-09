@@ -196,7 +196,7 @@ export const Vacancy = ({
                 label: style["see-more"],
                 root: style["wrapper-more"],
               }}
-              href={`/hh-url/vacancies/${id}`}
+              href={`#/vacancies/${id}`}
             >
               Смотреть вакансию
             </Button>
