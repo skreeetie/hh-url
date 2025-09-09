@@ -3,8 +3,8 @@ import Add from "../../assets/add.svg?react";
 import style from "./style.module.scss";
 import { Remove } from "../../shared/Remove/Remove";
 import { useEffect, useState } from "react";
-import { useTypedDispatch, useTypedSelector } from "../../hooks/redux";
-import { setSkills } from "../../reducers/SkillsSlice/SkillsSlice";
+import { useTypedDispatch, useTypedSelector } from "../../redux/hooks/redux";
+import { setSkills } from "../../redux/reducers/SkillsSlice/SkillsSlice";
 import { useSearchParams } from "react-router";
 
 export const Skills = () => {
