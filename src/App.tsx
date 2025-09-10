@@ -10,10 +10,11 @@ import { VacancyPage } from "./pages/VacancyPage/VacancyPage";
 export const App = () => {
   return (
     <MantineProvider theme={theme}>
-      <Header />
       <Routes>
-        <Route path="/vacancies" element={<Vacancies />} />
-        <Route path="/vacancies/:id" element={<VacancyPage />} />
+        <Route path="/" element={<Header />}>
+          <Route path="vacancies" element={<Vacancies />} />
+          <Route path="vacancies/:id" element={<VacancyPage />} />
+        </Route>
       </Routes>
     </MantineProvider>
   );
