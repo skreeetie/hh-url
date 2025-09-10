@@ -28,12 +28,17 @@ export const Skills = () => {
           onKeyDown={({ key }) => {
             if (key === "Enter" && value) {
               if (searchParams.get("skills")) {
-                setSearchParams({
-                  skills: `${searchParams.get("skills")} ${value}`,
+                setSearchParams((searchParams) => {
+                  searchParams.set(
+                    "skills",
+                    `${searchParams.get("skills")} ${value}`
+                  );
+                  return searchParams;
                 });
               } else {
-                setSearchParams({
-                  skills: `${value}`,
+                setSearchParams((searchParams) => {
+                  searchParams.set("skills", `${value}`);
+                  return searchParams;
                 });
               }
               setValue("");
@@ -54,12 +59,17 @@ export const Skills = () => {
           onClick={() => {
             if (value) {
               if (searchParams.get("skills")) {
-                setSearchParams({
-                  skills: `${searchParams.get("skills")} ${value}`,
+                setSearchParams((searchParams) => {
+                  searchParams.set(
+                    "skills",
+                    `${searchParams.get("skills")} ${value}`
+                  );
+                  return searchParams;
                 });
               } else {
-                setSearchParams({
-                  skills: `${value}`,
+                setSearchParams((searchParams) => {
+                  searchParams.set("skills", `${value}`);
+                  return searchParams;
                 });
               }
               setValue("");
@@ -80,11 +90,15 @@ export const Skills = () => {
               {item.name}
               <Remove
                 onClick={() => {
-                  setSearchParams({
-                    skills: skillsList
-                      .filter((skill) => skill.id !== item.id)
-                      .map((skill) => skill.name)
-                      .join(" "),
+                  setSearchParams((searchParams) => {
+                    searchParams.set(
+                      "skills",
+                      skillsList
+                        .filter((skill) => skill.id !== item.id)
+                        .map((skill) => skill.name)
+                        .join(" ")
+                    );
+                    return searchParams;
                   });
                 }}
                 testid="remove"

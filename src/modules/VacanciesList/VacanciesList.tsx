@@ -28,7 +28,10 @@ export const VacanciesList = () => {
           <TextInput
             onKeyDown={({ key }) => {
               if (key === "Enter") {
-                setSearchParams({ search: searchValue });
+                setSearchParams((searchParams) => {
+                  searchParams.set("search", searchValue);
+                  return searchParams;
+                });
               }
             }}
             value={searchValue}
@@ -47,7 +50,10 @@ export const VacanciesList = () => {
             variant="filled"
             color="primary.4"
             onClick={() => {
-              setSearchParams({ search: searchValue });
+              setSearchParams((searchParams) => {
+                searchParams.set("search", searchValue);
+                return searchParams;
+              });
             }}
           >
             Найти
@@ -77,8 +83,10 @@ export const VacanciesList = () => {
                 />
               );
             })}
-          {vacanciesList && (
+          {vacanciesList?.items && vacanciesList?.items.length > 0 ? (
             <PaginationFooter vacanciesLength={vacanciesList?.items.length} />
+          ) : (
+            <p>Ничего не найдено</p>
           )}
         </div>
       </div>

@@ -24,7 +24,12 @@ export const Area = () => {
         data={["Все города", "Москва", "Санкт-Петербург"]}
         value={areasList}
         onChange={(e) => {
-          setSearchParams({ area: e });
+          e.forEach((area) => {
+            setSearchParams((searchParams) => {
+              searchParams.append("area", area);
+              return searchParams;
+            });
+          });
         }}
         classNames={{ input: style.input }}
       />
